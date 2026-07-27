@@ -10,18 +10,18 @@
 <body>
 
     <!-- Navigasi Utama -->
-<header class="mobile-header">
-    <div class="nav-links" style="font-size: 0.65rem; display: flex; justify-content: center; align-items: center; gap: 4px; padding: 4px 2px; white-space: nowrap; overflow-x: auto;">
-        <a href="index.html" data-id="Home" data-en="Home" style="padding: 2px 4px;">Home</a>
-        <a href="profile.html" data-id="Profil" data-en="Profile" style="padding: 2px 4px;">Profil</a>
-        <a href="gallery.html" class="active" data-id="Galeri" data-en="Gallery" style="padding: 2px 4px;">Galeri</a>
-        <a href="calendar.html" data-id="Event" data-en="Event" style="padding: 2px 4px;">Event</a>
-        <a href="guestbook.html" data-id="Buku Tamu" data-en="Guest Book" style="padding: 2px 4px;">Buku Tamu</a>
-        <a href="forum.html" data-id="Forum" data-en="Forum" style="padding: 2px 4px;">Forum</a>
-    </div>
-</header>
+    <header class="mobile-header">
+        <div class="nav-links" style="font-size: 0.65rem; display: flex; justify-content: center; align-items: center; gap: 4px; padding: 4px 2px; white-space: nowrap; overflow-x: auto;">
+            <a href="index.html" data-id="Home" data-en="Home" style="padding: 2px 4px;">Home</a>
+            <a href="profile.html" data-id="Profil" data-en="Profile" style="padding: 2px 4px;">Profil</a>
+            <a href="gallery.html" class="active" data-id="Galeri" data-en="Gallery" style="padding: 2px 4px;">Galeri</a>
+            <a href="calendar.html" data-id="Event" data-en="Event" style="padding: 2px 4px;">Event</a>
+            <a href="guestbook.html" data-id="Buku Tamu" data-en="Guest Book" style="padding: 2px 4px;">Buku Tamu</a>
+            <a href="forum.html" data-id="Forum" data-en="Forum" style="padding: 2px 4px;">Forum</a>
+        </div>
+    </header>
 
-    <!-- Tombol Pemilih Bahasa (Bendera Kecil) -->
+    <!-- Tombol Pemilih Bahasa -->
     <div style="text-align: right; padding: 10px 20px; background: #FFFDF5; border-bottom: 1px solid #E5E5E5;">
         <span style="font-size: 0.75rem; color: #666; margin-right: 8px;">Language:</span>
         <button onclick="setLanguage('id')" style="background: none; border: 1.5px solid #D4AF37; border-radius: 4px; padding: 2px 6px; cursor: pointer; font-size: 0.85rem;" title="Bahasa Indonesia">🇮🇩</button>
@@ -41,7 +41,7 @@
                     <div style="padding: 12px; border-top: 1px solid #F0F0F0;">
                         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
                             <span style="font-size: 0.8rem; font-weight: 600; color: #555;">gallery3.png</span>
-                            <button onclick="toggleLike('gallery3')" id="like-btn-gallery3" style="background: none; border: 1px solid #D4AF37; border-radius: 20px; padding: 4px 12px; cursor: pointer; font-size: 0.8rem; color: #AA8C2C;">🤍 <span id="like-count-gallery3">0</span> Suka</button>
+                            <button onclick="toggleLike('gallery3')" id="like-btn-gallery3" style="background: none; border: 1.5px solid #D4AF37; border-radius: 20px; padding: 4px 12px; cursor: pointer; font-size: 0.8rem; color: #AA8C2C;">🤍 <span id="like-count-gallery3">0</span> Suka</button>
                         </div>
                         <div id="comments-gallery3" style="font-size: 0.8rem; color: #444; margin-bottom: 8px; display: flex; flex-direction: column; gap: 4px;"></div>
                         <div style="display: flex; gap: 6px;">
@@ -93,28 +93,23 @@
 
     <script src="script.js"></script>
     <script>
-        // Fungsi pengaman terjemahan bahasa jika belum ada di script.js
-        if (typeof setLanguage !== 'function') {
-            function setLanguage(lang) {
-                localStorage.setItem('site_lang', lang);
-                document.querySelectorAll('[data-id]').forEach(el => {
-                    const textId = el.getAttribute('data-id');
-                    const textEn = el.getAttribute('data-en');
-                    if (lang === 'en' && textEn) {
-                        el.innerText = textEn;
-                    } else if (textId) {
-                        el.innerText = textId;
-                    }
-                });
-            }
+        // Fungsi terjemahan bahasa
+        function setLanguage(lang) {
+            localStorage.setItem('site_lang', lang);
+            document.querySelectorAll('[data-id]').forEach(el => {
+                const textId = el.getAttribute('data-id');
+                const textEn = el.getAttribute('data-en');
+                if (lang === 'en' && textEn) {
+                    el.innerText = textEn;
+                } else if (textId) {
+                    el.innerText = textId;
+                }
+            });
         }
 
         window.onload = function() {
             const savedLang = localStorage.getItem('site_lang') || 'id';
             setLanguage(savedLang);
-            if (typeof loadAllGalleryInteractions === 'function') {
-                loadAllGalleryInteractions();
-            }
         };
     </script>
 </body>
