@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Gallery Nyonya Rowiy Fischbach Fangidae</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Navigasi Utama -->
+<header class="mobile-header">
+    <div class="nav-links" style="font-size: 0.65rem; display: flex; justify-content: center; align-items: center; gap: 4px; padding: 4px 2px; white-space: nowrap; overflow-x: auto;">
+        <a href="index.html" data-id="Home" data-en="Home" style="padding: 2px 4px;">Home</a>
+        <a href="profile.html" data-id="Profil" data-en="Profile" style="padding: 2px 4px;">Profil</a>
+        <a href="gallery.html" class="active" data-id="Galeri" data-en="Gallery" style="padding: 2px 4px;">Galeri</a>
+        <a href="calendar.html" data-id="Event" data-en="Event" style="padding: 2px 4px;">Event</a>
+        <a href="guestbook.html" data-id="Buku Tamu" data-en="Guest Book" style="padding: 2px 4px;">Buku Tamu</a>
+        <a href="forum.html" data-id="Forum" data-en="Forum" style="padding: 2px 4px;">Forum</a>
+    </div>
+</header>
+
+    <!-- Tombol Pemilih Bahasa (Bendera Kecil) -->
+    <div style="text-align: right; padding: 10px 20px; background: #FFFDF5; border-bottom: 1px solid #E5E5E5;">
+        <span style="font-size: 0.75rem; color: #666; margin-right: 8px;">Language:</span>
+        <button onclick="setLanguage('id')" style="background: none; border: 1.5px solid #D4AF37; border-radius: 4px; padding: 2px 6px; cursor: pointer; font-size: 0.85rem;" title="Bahasa Indonesia">🇮🇩</button>
+        <button onclick="setLanguage('en')" style="background: none; border: 1.5px solid #D4AF37; border-radius: 4px; padding: 2px 6px; cursor: pointer; font-size: 0.85rem;" title="English">🇺🇸</button>
+    </div>
+
+    <main>
+        <div class="container" style="max-width: 600px; margin: 0 auto; padding: 15px;">
+            <h2 style="color: #AA8C2C; margin-bottom: 5px; text-align: center; font-size: 1.2rem;" data-id="GALLERY NYONYA ROWIY FISCHBACH FANGIDAE" data-en="GALLERY NYONYA ROWIY FISCHBACH FANGIDAE">GALLERY NYONYA ROWIY FISCHBACH FANGIDAE</h2>
+            <p style="color: #666; font-size: 0.85rem; margin-bottom: 20px; text-align: center;" data-id="Dokumentasi kegiatan sosial dan perjumpaan global." data-en="Documentation of social activities and global gatherings.">Dokumentasi kegiatan sosial dan perjumpaan global.</p>
+            
+            <div style="display: flex; flex-direction: column; gap: 25px;">
+                
+                <!-- FOTO 1 -->
+                <div style="background: #FFF; border: 1px solid #E5E5E5; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                    <img src="gallery1.png" alt="gallery1.png" style="width: 100%; height: auto; display: block;">
+                    <div style="padding: 12px; border-top: 1px solid #F0F0F0;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                            <span style="font-size: 0.8rem; font-weight: 600; color: #555;">gallery1.png</span>
+                            <button onclick="toggleLike('gallery1')" id="like-btn-gallery1" style="background: none; border: 1px solid #D4AF37; border-radius: 20px; padding: 4px 12px; cursor: pointer; font-size: 0.8rem; color: #AA8C2C;">🤍 <span id="like-count-gallery1">0</span> Suka</button>
+                        </div>
+                        <!-- Komentar -->
+                        <div id="comments-gallery1" style="font-size: 0.8rem; color: #444; margin-bottom: 8px; display: flex; flex-direction: column; gap: 4px;"></div>
+                        <div style="display: flex; gap: 6px;">
+                            <input type="text" id="input-gallery1" placeholder="Tulis komentar..." style="flex: 1; padding: 6px 10px; font-size: 0.8rem; border: 1px solid #ddd; border-radius: 4px;">
+                            <button onclick="postPhotoComment('gallery1')" style="background: #AA8C2C; color: #fff; border: none; border-radius: 4px; padding: 6px 12px; font-size: 0.8rem; cursor: pointer;">Kirim</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FOTO 2 -->
+                <div style="background: #FFF; border: 1px solid #E5E5E5; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                    <img src="gallery2.png" alt="gallery2.png" style="width: 100%; height: auto; display: block;">
+                    <div style="padding: 12px; border-top: 1px solid #F0F0F0;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                            <span style="font-size: 0.8rem; font-weight: 600; color: #555;">gallery2.png</span>
+                            <button onclick="toggleLike('gallery2')" id="like-btn-gallery2" style="background: none; border: 1px solid #D4AF37; border-radius: 20px; padding: 4px 12px; cursor: pointer; font-size: 0.8rem; color: #AA8C2C;">🤍 <span id="like-count-gallery2">0</span> Suka</button>
+                        </div>
+                        <div id="comments-gallery2" style="font-size: 0.8rem; color: #444; margin-bottom: 8px; display: flex; flex-direction: column; gap: 4px;"></div>
+                        <div style="display: flex; gap: 6px;">
+                            <input type="text" id="input-gallery2" placeholder="Tulis komentar..." style="flex: 1; padding: 6px 10px; font-size: 0.8rem; border: 1px solid #ddd; border-radius: 4px;">
+                            <button onclick="postPhotoComment('gallery2')" style="background: #AA8C2C; color: #fff; border: none; border-radius: 4px; padding: 6px 12px; font-size: 0.8rem; cursor: pointer;">Kirim</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FOTO 3 -->
+                <div style="background: #FFF; border: 1px solid #E5E5E5; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                    <img src="gallery3.png" alt="gallery3.png" style="width: 100%; height: auto; display: block;">
+                    <div style="padding: 12px; border-top: 1px solid #F0F0F0;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                            <span style="font-size: 0.8rem; font-weight: 600; color: #555;">gallery3.png</span>
+                            <button onclick="toggleLike('gallery3')" id="like-btn-gallery3" style="background: none; border: 1px solid #D4AF37; border-radius: 20px; padding: 4px 12px; cursor: pointer; font-size: 0.8rem; color: #AA8C2C;">🤍 <span id="like-count-gallery3">0</span> Suka</button>
+                        </div>
+                        <div id="comments-gallery3" style="font-size: 0.8rem; color: #444; margin-bottom: 8px; display: flex; flex-direction: column; gap: 4px;"></div>
+                        <div style="display: flex; gap: 6px;">
+                            <input type="text" id="input-gallery3" placeholder="Tulis komentar..." style="flex: 1; padding: 6px 10px; font-size: 0.8rem; border: 1px solid #ddd; border-radius: 4px;">
+                            <button onclick="postPhotoComment('gallery3')" style="background: #AA8C2C; color: #fff; border: none; border-radius: 4px; padding: 6px 12px; font-size: 0.8rem; cursor: pointer;">Kirim</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FOTO 4 -->
+                <div style="background: #FFF; border: 1px solid #E5E5E5; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                    <img src="gallery4.png" alt="gallery4.png" style="width: 100%; height: auto; display: block;">
+                    <div style="padding: 12px; border-top: 1px solid #F0F0F0;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                            <span style="font-size: 0.8rem; font-weight: 600; color: #555;">gallery4.png</span>
+                            <button onclick="toggleLike('gallery4')" id="like-btn-gallery4" style="background: none; border: 1px solid #D4AF37; border-radius: 20px; padding: 4px 12px; cursor: pointer; font-size: 0.8rem; color: #AA8C2C;">🤍 <span id="like-count-gallery4">0</span> Suka</button>
+                        </div>
+                        <div id="comments-gallery4" style="font-size: 0.8rem; color: #444; margin-bottom: 8px; display: flex; flex-direction: column; gap: 4px;"></div>
+                        <div style="display: flex; gap: 6px;">
+                            <input type="text" id="input-gallery4" placeholder="Tulis komentar..." style="flex: 1; padding: 6px 10px; font-size: 0.8rem; border: 1px solid #ddd; border-radius: 4px;">
+                            <button onclick="postPhotoComment('gallery4')" style="background: #AA8C2C; color: #fff; border: none; border-radius: 4px; padding: 6px 12px; font-size: 0.8rem; cursor: pointer;">Kirim</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FOTO 5 -->
+                <div style="background: #FFF; border: 1px solid #E5E5E5; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                    <img src="gallery5.png" alt="gallery5.png" style="width: 100%; height: auto; display: block;">
+                    <div style="padding: 12px; border-top: 1px solid #F0F0F0;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                            <span style="font-size: 0.8rem; font-weight: 600; color: #555;">gallery5.png</span>
+                            <button onclick="toggleLike('gallery5')" id="like-btn-gallery5" style="background: none; border: 1px solid #D4AF37; border-radius: 20px; padding: 4px 12px; cursor: pointer; font-size: 0.8rem; color: #AA8C2C;">🤍 <span id="like-count-gallery5">0</span> Suka</button>
+                        </div>
+                        <div id="comments-gallery5" style="font-size: 0.8rem; color: #444; margin-bottom: 8px; display: flex; flex-direction: column; gap: 4px;"></div>
+                        <div style="display: flex; gap: 6px;">
+                            <input type="text" id="input-gallery5" placeholder="Tulis komentar..." style="flex: 1; padding: 6px 10px; font-size: 0.8rem; border: 1px solid #ddd; border-radius: 4px;">
+                            <button onclick="postPhotoComment('gallery5')" style="background: #AA8C2C; color: #fff; border: none; border-radius: 4px; padding: 6px 12px; font-size: 0.8rem; cursor: pointer;">Kirim</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p data-id="&copy; 2026 Rowiy Fischbach Fangidae. Hak Cipta Dilindungi." data-en="&copy; 2026 Rowiy Fischbach Fangidae. All Rights Reserved.">&copy; 2026 Rowiy Fischbach Fangidae. All Rights Reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        window.onload = function() {
+            const savedLang = localStorage.getItem('site_lang') || 'id';
+            setLanguage(savedLang);
+            loadAllGalleryInteractions();
+        };
+    </script>
+</body>
+</html>

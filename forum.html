@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Forum Komunitas - Rowiy Fischbach Fangidae</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+ <!-- Navigasi Utama -->
+<header class="mobile-header">
+    <div class="nav-links" style="font-size: 0.65rem; display: flex; justify-content: center; align-items: center; gap: 4px; padding: 4px 2px; white-space: nowrap; overflow-x: auto;">
+        <a href="index.html" data-id="Home" data-en="Home" style="padding: 2px 4px;">Home</a>
+        <a href="profile.html" data-id="Profil" data-en="Profile" style="padding: 2px 4px;">Profil</a>
+        <a href="gallery.html" data-id="Galeri" data-en="Gallery" style="padding: 2px 4px;">Galeri</a>
+        <a href="calendar.html" data-id="Event" data-en="Event" style="padding: 2px 4px;">Event</a>
+        <a href="guestbook.html" data-id="Buku Tamu" data-en="Guest Book" style="padding: 2px 4px;">Buku Tamu</a>
+        <a href="forum.html" class="active" data-id="Forum" data-en="Forum" style="padding: 2px 4px;">Forum</a>
+    </div>
+</header>
+
+    <!-- Tombol Pemilih Bahasa -->
+    <div style="text-align: right; padding: 10px 20px; background: #FFFDF5; border-bottom: 1px solid #E5E5E5;">
+        <span style="font-size: 0.75rem; color: #666; margin-right: 8px;">Language:</span>
+        <button onclick="setLanguage('id')" style="background: none; border: 1.5px solid #D4AF37; border-radius: 4px; padding: 2px 6px; cursor: pointer; font-size: 0.85rem;" title="Bahasa Indonesia">🇮🇩</button>
+        <button onclick="setLanguage('en')" style="background: none; border: 1.5px solid #D4AF37; border-radius: 4px; padding: 2px 6px; cursor: pointer; font-size: 0.85rem;" title="English">🇺🇸</button>
+    </div>
+
+    <main>
+        <div class="container" style="max-width: 650px; margin: 0 auto; padding: 15px;">
+            <h2 style="color: #AA8C2C; margin-bottom: 5px; text-align: center;" data-id="Forum Diskusi Penggemar" data-en="Fan Discussion Forum">Forum Diskusi Penggemar</h2>
+            <p style="color: #666; font-size: 0.85rem; margin-bottom: 20px; text-align: center;" data-id="Ruang eksklusif untuk saling berbagi cerita dan inspirasi." data-en="Exclusive space to share stories and inspiration.">Ruang eksklusif untuk saling berbagi cerita dan inspirasi dari aksi filantropi Nyonya Rowiy.</p>
+            
+            <!-- Status Verifikasi -->
+            <div style="background: #FFFDF5; border: 1px solid #E5D599; padding: 12px 15px; border-radius: 8px; margin-bottom: 20px; font-size: 0.85rem;">
+                <span style="font-weight: bold; color: #AA8C2C;" data-id="Status: Terverifikasi ✓" data-en="Status: Verified ✓">Status: Terverifikasi ✓</span>
+                <p style="margin: 5px 0 0 0; color: #555;" data-id="Anda telah mengisi buku tamu dan memiliki akses penuh ke ruang diskusi ini." data-en="You have filled out the guest book and have full access to this discussion room.">Anda telah mengisi buku tamu dan memiliki akses penuh ke ruang diskusi ini.</p>
+            </div>
+
+            <!-- Form Kirim Komentar / Pesan -->
+            <div style="background: #FFFDF5; border: 1px solid #E5D599; padding: 15px; border-radius: 8px; margin-bottom: 25px;">
+                <h4 style="margin: 0 0 10px 0; font-size: 0.95rem; color: #333;" data-id="Tinggalkan Pesan / Diskusi" data-en="Leave a Message / Discussion">Tinggalkan Pesan / Diskusi</h4>
+                <textarea id="forum-input" placeholder="Tulis komentar atau apresiasi Anda di sini..." style="width: 100%; height: 80px; padding: 10px; font-size: 0.85rem; border: 1px solid #D4AF37; border-radius: 6px; resize: none; box-sizing: border-box; margin-bottom: 10px;"></textarea>
+                <button onclick="postForumComment()" style="background: #AA8C2C; color: #fff; border: none; border-radius: 6px; padding: 8px 16px; font-size: 0.85rem; cursor: pointer; font-weight: 600;" data-id="Kirim Komentar" data-en="Send Comment">Kirim Komentar</button>
+            </div>
+
+            <!-- Daftar Diskusi / Komentar -->
+            <h3 style="font-size: 1rem; color: #AA8C2C; margin-bottom: 12px;" data-id="Diskusi Terbaru" data-en="Latest Discussions">Diskusi Terbaru</h3>
+            <div id="forum-comments-container" style="display: flex; flex-direction: column; gap: 12px;">
+                <!-- Komentar akan dimuat secara dinamis via JavaScript -->
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Rowiy Fischbach Fangidae. Hak Cipta Dilindungi.</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        window.onload = function() {
+            const savedLang = localStorage.getItem('site_lang') || 'id';
+            setLanguage(savedLang);
+            
+            // Bersihkan data lama yang rusak/undefined di localStorage agar fresh
+            let savedComments = JSON.parse(localStorage.getItem('rowiy_forum_comments'));
+            if (!savedComments || savedComments.some(c => !c.text || c.text === 'undefined')) {
+                localStorage.removeItem('rowiy_forum_comments');
+            }
+            
+            loadForumComments();
+        };
+
+        // Fungsi untuk memuat dan merender komentar forum
+        function loadForumComments() {
+            const container = document.getElementById('forum-comments-container');
+            
+            let defaultComments = [
+                {
+                    id: 'comment_default_1',
+                    name: 'Ronny Waas',
+                    date: '27 Jul 2026, 15:08',
+                    text: 'Wah ternyata sudah ada website yang bisa mempersatukan seluruh penggemar nyonya Fischbach!',
+                    likes: 0,
+                    likedByMe: false
+                }
+            ];
+
+            let comments = JSON.parse(localStorage.getItem('rowiy_forum_comments')) || defaultComments;
+            
+            let html = '';
+            comments.forEach((c) => {
+                let heartIcon = c.likedByMe ? '❤️' : '🤍';
+                let likeCount = (c.likes !== undefined) ? c.likes : 0;
+                
+                html += `
+                    <div style="background: #FFFDF5; border: 1px solid #E5D599; padding: 12px 15px; border-radius: 8px; box-shadow: 0 1px 4px rgba(0,0,0,0.03);">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                            <div style="display: flex; align-items: center; gap: 6px;">
+                                <!-- Lampu Hijau Status Aktif -->
+                                <span style="width: 8px; height: 8px; background-color: #2ECC71; border-radius: 50%; display: inline-block; box-shadow: 0 0 4px #2ECC71;" title="Aktif"></span>
+                                <strong style="font-size: 0.85rem; color: #222;">${c.name}</strong>
+                            </div>
+                            <span style="font-size: 0.7rem; color: #888;">${c.date}</span>
+                        </div>
+                        <p style="font-size: 0.83rem; color: #444; margin: 0 0 10px 0; line-height: 1.4;">${c.text}</p>
+                        <div style="display: flex; justify-content: flex-end; align-items: center;">
+                            <button onclick="toggleLikeForum('${c.id}')" style="background: none; border: 1px solid #D4AF37; border-radius: 15px; padding: 3px 10px; cursor: pointer; font-size: 0.75rem; color: #AA8C2C; display: flex; align-items: center; gap: 4px;">
+                                <span>${heartIcon}</span> <span>${likeCount}</span> Suka
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+        }
+
+        // Fungsi untuk mengirim komentar baru
+        function postForumComment() {
+            const input = document.getElementById('forum-input');
+            const text = input.value.trim();
+            if (!text) return;
+
+            let guestList = JSON.parse(localStorage.getItem('rowiy_guest_list')) || [];
+            let authorName = guestList.length > 0 ? guestList[0].name : 'Pengunjung';
+
+            let now = new Date();
+            let dateStr = now.toLocaleDateString('id-ID', { day: '2-digit', month: 'short', year: 'numeric' }) + ', ' + now.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
+
+            let comments = JSON.parse(localStorage.getItem('rowiy_forum_comments')) || [
+                {
+                    id: 'comment_default_1',
+                    name: 'Ronny Waas',
+                    date: '27 Jul 2026, 15:08',
+                    text: 'Wah ternyata sudah ada website yang bisa mempersatukan seluruh penggemar nyonya Fischbach!',
+                    likes: 0,
+                    likedByMe: false
+                }
+            ];
+
+            let newComment = {
+                id: 'comment_' + Date.now(),
+                name: authorName,
+                date: dateStr,
+                text: text,
+                likes: 0,
+                likedByMe: false
+            };
+
+            comments.unshift(newComment);
+            localStorage.setItem('rowiy_forum_comments', JSON.stringify(comments));
+
+            input.value = '';
+            loadForumComments();
+        }
+
+        // Fungsi untuk Like / Unlike komentar tertentu di forum
+        function toggleLikeForum(id) {
+            let comments = JSON.parse(localStorage.getItem('rowiy_forum_comments')) || [];
+            let target = comments.find(c => c.id === id);
+            if (target) {
+                if (target.likes === undefined) target.likes = 0;
+                if (target.likedByMe) {
+                    target.likes -= 1;
+                    target.likedByMe = false;
+                } else {
+                    target.likes += 1;
+                    target.likedByMe = true;
+                }
+                localStorage.setItem('rowiy_forum_comments', JSON.stringify(comments));
+                loadForumComments();
+            }
+        }
+    </script>
+</body>
+</html>

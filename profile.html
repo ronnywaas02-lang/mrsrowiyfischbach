@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Profil & Biografi - Nyonya Rowiy Fischbach Fangidae</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Navigasi Utama -->
+<header class="mobile-header">
+    <div class="nav-links" style="font-size: 0.65rem; display: flex; justify-content: center; align-items: center; gap: 4px; padding: 4px 2px; white-space: nowrap; overflow-x: auto;">
+        <a href="index.html" data-id="Home" data-en="Home" style="padding: 2px 4px;">Home</a>
+        <a href="profile.html" class="active" data-id="Profil" data-en="Profile" style="padding: 2px 4px;">Profil</a>
+        <a href="gallery.html" data-id="Galeri" data-en="Gallery" style="padding: 2px 4px;">Galeri</a>
+        <a href="calendar.html" data-id="Event" data-en="Event" style="padding: 2px 4px;">Event</a>
+        <a href="guestbook.html" data-id="Buku Tamu" data-en="Guest Book" style="padding: 2px 4px;">Buku Tamu</a>
+        <a href="forum.html" data-id="Forum" data-en="Forum" style="padding: 2px 4px;">Forum</a>
+    </div>
+</header>
+
+    <!-- Tombol Pemilih Bahasa (Bendera Kecil) -->
+    <div style="text-align: right; padding: 10px 20px; background: #FFFDF5; border-bottom: 1px solid #E5E5E5;">
+        <span style="font-size: 0.75rem; color: #666; margin-right: 8px;">Language:</span>
+        <button onclick="setLanguage('id')" style="background: none; border: 1.5px solid #D4AF37; border-radius: 4px; padding: 2px 6px; cursor: pointer; font-size: 0.85rem;" title="Bahasa Indonesia">🇮🇩</button>
+        <button onclick="setLanguage('en')" style="background: none; border: 1.5px solid #D4AF37; border-radius: 4px; padding: 2px 6px; cursor: pointer; font-size: 0.85rem;" title="English">🇺🇸</button>
+    </div>
+
+    <main>
+        <div class="container" style="text-align: left;">
+            <h2 style="color: #AA8C2C; text-align: center; margin-bottom: 5px;" data-id="Profil & Biografi" data-en="Profile & Biography">Profil & Biografi</h2>
+            <p style="text-align: center; color: #666; font-size: 0.85rem; margin-bottom: 20px;" data-id="Mengenal lebih dekat sosok dan perjalanan hidup Nyonya Rowiy." data-en="Get to know Nyonya Rowiy's figure and life journey closer.">Mengenal lebih dekat sosok dan perjalanan hidup Nyonya Rowiy.</p>
+
+            <!-- Foto Profil -->
+            <div style="text-align: center; margin-bottom: 20px;">
+                <img src="foto.png" alt="Nyonya Rowiy Fischbach Fangidae" style="width: 130px; height: 130px; border-radius: 50%; object-fit: cover; border: 4px solid #D4AF37; box-shadow: 0 4px 15px rgba(212,175,55,0.3);">
+            </div>
+
+            <!-- Pengantar Singkat -->
+            <p style="font-size: 0.9rem; color: #444; line-height: 1.6; margin-bottom: 20px;" 
+               data-id="Nyonya Rowiy R. Fangidae Fischbach adalah seorang tokoh filantropi terkemuka asal Rote/Kupang, Timor Barat, yang dikenal luas atas dedikasinya pada karya kemanusiaan global bersama sang suami, Jonathan Thomas Fischbach. Beliau adalah putri dari mendiang Pendeta Eli Fangidae dan Ibu Yahya Fadji, serta membagi waktu antara kediamannya di Beverly Hills, Amerika Serikat, dan daerah asal beliau di Nusa Tenggara Timur (NTT)." 
+               data-en="Nyonya Rowiy R. Fangidae Fischbach is a prominent philanthropist from Rote/Kupang, West Timor, known for global humanitarian work alongside her husband, Jonathan Thomas Fischbach. She is the daughter of the late Pastor Eli Fangidae and Ibu Yahya Fadji, and divides her time between Beverly Hills, USA, and her home region in NTT.">
+                Nyonya Rowiy R. Fangidae Fischbach adalah seorang tokoh filantropi terkemuka asal Rote/Kupang, Timor Barat, yang dikenal luas atas dedikasinya pada karya kemanusiaan global bersama sang suami, Jonathan Thomas Fischbach. Beliau adalah putri dari mendiang Pendeta Eli Fangidae dan Ibu Yahya Fadji, serta membagi waktu antara kediamannya di Beverly Hills, Amerika Serikat, dan daerah asal beliau di Nusa Tenggara Timur (NTT).
+            </p>
+
+            <hr style="border: none; border-top: 1px solid #E5E5E5; margin: 20px 0;">
+
+            <!-- Latar Belakang & Keluarga -->
+            <h3 style="font-size: 1rem; color: #AA8C2C; margin-bottom: 10px;" data-id="Latar Belakang & Keluarga" data-en="Background and Family">Latar Belakang & Keluarga</h3>
+            <ul style="font-size: 0.88rem; color: #555; padding-left: 20px; margin-bottom: 20px; display: flex; flex-direction: column; gap: 6px;">
+                <li data-id="Putri dari Pdt. Eli Fangidae dan Ibu Yahya Fadji Padji Lomi." data-en="Daughter of Pastor Eli Fangidae and Ibu Yahya Fadji Padji Lomi.">Putri dari Pdt. Eli Fangidae dan Ibu Yahya Fadji Padji Lomi.</li>
+                <li data-id="Menikah dengan Jonathan Thomas Fischbach (John Fischbach), bertempat tinggal di Beverly Hills, California." data-en="Married to Jonathan Thomas Fischbach (John Fischbach), residing in Beverly Hills, California.">Menikah dengan Jonathan Thomas Fischbach (John Fischbach), bertempat tinggal di Beverly Hills, California.</li>
+            </ul>
+
+            <hr style="border: none; border-top: 1px solid #E5E5E5; margin: 20px 0;">
+
+            <!-- Karya Kemanusiaan -->
+            <h3 style="font-size: 1rem; color: #AA8C2C; margin-bottom: 10px;" data-id="Karya Kemanusiaan" data-en="Humanitarian Work">Karya Kemanusiaan</h3>
+            <ul style="font-size: 0.88rem; color: #555; padding-left: 20px; margin-bottom: 20px; display: flex; flex-direction: column; gap: 8px;">
+                <li data-id="Aktif di 15 negara dalam mendukung kelompok marjinal, organisasi penderita kanker & AIDS, serta Palang Merah." data-en="Active in 15 countries supporting marginalized groups, cancer and AIDS organizations, and the Red Cross.">Aktif di 15 negara dalam mendukung kelompok marjinal, organisasi penderita kanker & AIDS, serta Palang Merah.</li>
+                <li data-id="Berjuang mengatasi kelaparan global, membantu anak-anak kurang gizi di wilayah seperti Ethiopia dan Afrika." data-en="Fights global hunger, aiding malnourished children in regions like Ethiopia and Africa.">Berjuang mengatasi kelaparan global, membantu anak-anak kurang gizi di wilayah seperti Ethiopia dan Afrika.</li>
+                <li data-id="Mendukung para pendeta lokal, gereja, serta anggota masyarakat di Kupang dan Rote, Nusa Tenggara Timur." data-en="Supports local pastors, churches, and community members in Kupang and Rote, East Nusa Tenggara.">Mendukung para pendeta lokal, gereja, serta anggota masyarakat di Kupang dan Rote, Nusa Tenggara Timur.</li>
+                <li data-id="Pegiat berdedikasi tinggi untuk kesejahteraan hewan, mendukung tempat penampungan serta perawatan anjing dan kucing terlantar." data-en="Dedicated animal welfare advocate supporting shelters and care for stray dogs and cats.">Pegiat berdedikasi tinggi untuk kesejahteraan hewan, mendukung tempat penampungan serta perawatan anjing dan kucing terlantar.</li>
+            </ul>
+
+            <!-- Catatan Eksklusif -->
+            <div style="background: #FFFDF5; border-left: 4px solid #D4AF37; padding: 15px; border-radius: 0 8px 8px 0; margin-top: 25px;">
+                <h4 style="font-family: 'Playfair Display', serif; color: #AA8C2C; margin-bottom: 8px; font-size: 0.95rem;" data-id="✍️ Catatan Nyonya Rowiy" data-en="✍️ Note from Nyonya Rowiy">✍️ Catatan Nyonya Rowiy</h4>
+                <p style="font-size: 0.85rem; color: #444; font-style: italic; line-height: 1.5;" 
+                   data-id="&quot;Kepedulian sejati bukanlah tentang seberapa banyak yang kita beri, tetapi tentang seberapa besar cinta dan ketulusan yang kita hadirkan untuk mengubah hidup sesama. Terima kasih kepada seluruh pendukung setia yang terus berjalan membersamai langkah kebaikan ini.&quot;" 
+                   data-en="&quot;True care is not about how much we give, but about how much love and sincerity we bring to change the lives of others. Thank you to all loyal supporters who continue walking alongside this path of kindness.&quot;">
+                    "Kepedulian sejati bukanlah tentang seberapa banyak yang kita beri, tetapi tentang seberapa besar cinta dan ketulusan yang kita hadirkan untuk mengubah hidup sesama. Terima kasih kepada seluruh pendukung setia yang terus berjalan membersamai langkah kebaikan ini."
+                </p>
+                <p style="font-size: 0.8rem; color: #AA8C2C; text-align: right; margin-top: 8px; font-weight: bold;">— Nyonya Rowiy Fischbach Fangidae</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p data-id="&copy; 2026 Rowiy Fischbach Fangidae. Hak Cipta Dilindungi." data-en="&copy; 2026 Rowiy Fischbach Fangidae. All Rights Reserved.">&copy; 2026 Rowiy Fischbach Fangidae. All Rights Reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Set bahasa otomatis saat halaman dimuat
+        window.onload = function() {
+            const savedLang = localStorage.getItem('site_lang') || 'id';
+            setLanguage(savedLang);
+        };
+    </script>
+</body>
+</html>

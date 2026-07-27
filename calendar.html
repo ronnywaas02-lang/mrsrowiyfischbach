@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Event - Rowiy Fischbach Fangidae</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Navigasi Utama -->
+<header class="mobile-header">
+    <div class="nav-links" style="font-size: 0.65rem; display: flex; justify-content: center; align-items: center; gap: 4px; padding: 4px 2px; white-space: nowrap; overflow-x: auto;">
+        <a href="index.html" data-id="Home" data-en="Home" style="padding: 2px 4px;">Home</a>
+        <a href="profile.html" data-id="Profil" data-en="Profile" style="padding: 2px 4px;">Profil</a>
+        <a href="gallery.html" data-id="Galeri" data-en="Gallery" style="padding: 2px 4px;">Galeri</a>
+        <a href="calendar.html" class="active" data-id="Event" data-en="Event" style="padding: 2px 4px;">Event</a>
+        <a href="guestbook.html" data-id="Buku Tamu" data-en="Guest Book" style="padding: 2px 4px;">Buku Tamu</a>
+        <a href="forum.html" data-id="Forum" data-en="Forum" style="padding: 2px 4px;">Forum</a>
+    </div>
+</header>
+
+    <!-- Tombol Pemilih Bahasa -->
+    <div style="text-align: right; padding: 10px 20px; background: #FFFDF5; border-bottom: 1px solid #E5E5E5;">
+        <span style="font-size: 0.75rem; color: #666; margin-right: 8px;">Language:</span>
+        <button onclick="setLanguage('id')" style="background: none; border: 1.5px solid #D4AF37; border-radius: 4px; padding: 2px 6px; cursor: pointer; font-size: 0.85rem;" title="Bahasa Indonesia">🇮🇩</button>
+        <button onclick="setLanguage('en')" style="background: none; border: 1.5px solid #D4AF37; border-radius: 4px; padding: 2px 6px; cursor: pointer; font-size: 0.85rem;" title="English">🇺🇸</button>
+    </div>
+
+    <main>
+        <div class="container" style="max-width: 650px; margin: 0 auto; padding: 15px;">
+            <h2 style="color: #AA8C2C; margin-bottom: 5px; text-align: center;" data-id="Jadwal Event & Kegiatan" data-en="Event & Activity Schedule">Jadwal Event & Kegiatan</h2>
+            <p style="color: #666; font-size: 0.85rem; margin-bottom: 20px; text-align: center;" data-id="Daftar agenda kegiatan sosial dan pertemuan global Nyonya Rowiy." data-en="List of social activities and global gathering agendas of Nyonya Rowiy.">Daftar agenda kegiatan sosial dan pertemuan global Nyonya Rowiy (Urut Berdasarkan Tanggal).</p>
+            
+            <!-- Wadah Event yang diurutkan otomatis secara dinamis -->
+            <div id="event-container" style="display: flex; flex-direction: column; gap: 20px; text-align: left;">
+
+                <!-- Event: Buku Sekolah Tahun Ajaran Baru (5 Juli 2026) -->
+                <div class="event-card" data-date="2026-07-05" style="background: #FFFDF5; border: 1px solid #E5D599; padding: 18px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                        <span style="font-size: 0.75rem; color: #fff; font-weight: bold; background: #AA8C2C; padding: 3px 8px; border-radius: 4px;" data-id="STATUS: SELESAI" data-en="STATUS: COMPLETED">STATUS: SELESAI</span>
+                        <span style="font-size: 0.75rem; color: #AA8C2C; font-weight: bold;" data-id="5 Juli 2026" data-en="July 5, 2026">5 Juli 2026</span>
+                    </div>
+
+                    <h4 style="font-size: 1.05rem; color: #1A1A1A; margin: 0 0 8px 0;" data-id="Kasih & Kepedulian Nyonya Rowiy untuk Tahun Ajaran Baru" data-en="Love & Care from Nyonya Rowiy for the New Academic Year">Kasih & Kepedulian Nyonya Rowiy untuk Tahun Ajaran Baru</h4>
+                    
+                    <!-- Galeri Slide 1 sampai 7 (.jpg) -->
+                    <div style="margin-bottom: 12px;">
+                        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-bottom: 6px;">
+                            <a href="slide 1.jpg" target="_blank"><img src="slide 1.jpg" alt="Slide 1" style="width: 100%; height: 100px; object-fit: cover; border-radius: 4px; border: 1px solid #ddd;"></a>
+                            <a href="slide 2.jpg" target="_blank"><img src="slide 2.jpg" alt="Slide 2" style="width: 100%; height: 100px; object-fit: cover; border-radius: 4px; border: 1px solid #ddd;"></a>
+                            <a href="slide 3.jpg" target="_blank"><img src="slide 3.jpg" alt="Slide 3" style="width: 100%; height: 100px; object-fit: cover; border-radius: 4px; border: 1px solid #ddd;"></a>
+                            <a href="slide 4.jpg" target="_blank"><img src="slide 4.jpg" alt="Slide 4" style="width: 100%; height: 100px; object-fit: cover; border-radius: 4px; border: 1px solid #ddd;"></a>
+                            <a href="slide 5.jpg" target="_blank"><img src="slide 5.jpg" alt="Slide 5" style="width: 100%; height: 100px; object-fit: cover; border-radius: 4px; border: 1px solid #ddd;"></a>
+                            <a href="slide 6.jpg" target="_blank"><img src="slide 6.jpg" alt="Slide 6" style="width: 100%; height: 100px; object-fit: cover; border-radius: 4px; border: 1px solid #ddd;"></a>
+                        </div>
+                        <div style="text-align: center;">
+                            <a href="slide 7.jpg" target="_blank">
+                                <img src="slide 7.jpg" alt="Slide 7" style="width: 100%; max-height: 200px; object-fit: cover; border-radius: 4px; border: 1px solid #ddd; display: block; margin-bottom: 4px;">
+                                <span style="font-size: 0.75rem; color: #888; text-decoration: underline;" data-id="Klik untuk memperbesar foto slide" data-en="Click to enlarge slide photo">Klik untuk memperbesar foto slide</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Keterangan Lengkap -->
+                    <div style="font-size: 0.83rem; color: #444; line-height: 1.5; display: flex; flex-direction: column; gap: 8px; background: #FFF; padding: 12px; border-radius: 6px; border: 1px solid #F0E8D0;">
+                        <p style="margin: 0;">Puji syukur kepada Tuhan atas kasih dan penyertaan-Nya dalam setiap langkah kehidupan. Dengan penuh rasa hormat dan cinta, kami mengucapkan terima kasih yang sedalam-dalamnya kepada Nyonya Rowiy yang telah dengan tulus membelikan buku untuk menyambut tahun ajaran baru. Kebaikan, perhatian, dan kasih yang nyonya berikan bukan sekadar hadiah berupa buku, tetapi juga menjadi penyemangat dan bukti nyata kepedulian yang begitu berarti.</p>
+                        <p style="margin: 0;">Semoga Tuhan senantiasa melimpahkan kesehatan, kebahagiaan, umur panjang, serta rezeki yang berlimpah kepada Nyonya Rowiy. Semoga setiap kebaikan yang telah diberikan dibalas dengan berkat yang berlipat ganda, dan semoga kasih serta kebahagiaan selalu menyertai setiap langkah hidup Ibu.</p>
+                        <p style="margin: 0; font-weight: 600; color: #AA8C2C;">Terima kasih atas cinta, perhatian, dan ketulusan yang selalu menguatkan untuk Adik Rizky, Anak Cici, Damian, Nuela, Shera, Jonathan, Gerald dan Bautista. Semoga Tuhan menjaga dan memberkati Nyonya Rowiy & Mr John, hari ini dan selamanya. Amin.</p>
+                    </div>
+
+                    <!-- Suka & Komentar Event 5 Juli 2026 -->
+                    <div style="border-top: 1px solid #E5D599; margin-top: 12px; padding-top: 10px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                            <span style="font-size: 0.75rem; font-weight: 600; color: #555;">Tanggapan Event</span>
+                            <button onclick="toggleLikeEvent('event_slide5juli')" id="like-btn-event_slide5juli" style="background: none; border: 1px solid #D4AF37; border-radius: 20px; padding: 3px 12px; cursor: pointer; font-size: 0.75rem; color: #AA8C2C;">🤍 <span id="like-count-event_slide5juli">0</span> Suka</button>
+                        </div>
+                        <div id="comments-event_slide5juli" style="font-size: 0.8rem; color: #444; margin-bottom: 8px; display: flex; flex-direction: column; gap: 4px;"></div>
+                        <div style="display: flex; gap: 6px;">
+                            <input type="text" id="input-event_slide5juli" placeholder="Tulis komentar..." style="flex: 1; padding: 6px 10px; font-size: 0.75rem; border: 1px solid #ccc; border-radius: 4px;">
+                            <button onclick="postEventComment('event_slide5juli')" style="background: #AA8C2C; color: #fff; border: none; border-radius: 4px; padding: 6px 12px; font-size: 0.75rem; cursor: pointer;">Kirim</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Event: Perhatian & Kasih Sayang Kesehatan untuk Mami (10 Juli 2026) -->
+                <div class="event-card" data-date="2026-07-10" style="background: #FFFDF5; border: 1px solid #E5D599; padding: 18px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                        <span style="font-size: 0.75rem; color: #fff; font-weight: bold; background: #AA8C2C; padding: 3px 8px; border-radius: 4px;" data-id="STATUS: SELESAI" data-en="STATUS: COMPLETED">STATUS: SELESAI</span>
+                        <span style="font-size: 0.75rem; color: #AA8C2C; font-weight: bold;" data-id="10 Juli 2026" data-en="July 10, 2026">10 Juli 2026</span>
+                    </div>
+
+                    <h4 style="font-size: 1.05rem; color: #1A1A1A; margin: 0 0 8px 0;" data-id="Ketulusan Hati & Kepedulian Kesehatan dari Nyonya Rowiy" data-en="Sincerity & Healthcare Care from Nyonya Rowiy">Ketulusan Hati & Kepedulian Kesehatan dari Nyonya Rowiy</h4>
+                    
+                    <!-- Foto Dokumentasi -->
+                    <div style="margin-bottom: 12px; text-align: center;">
+                        <a href="image_c01711.jpg" target="_blank">
+                            <img src="image_c01711.jpg" alt="Kepedulian Kesehatan Nyonya Rowiy" style="width: 100%; max-height: 350px; object-fit: cover; border-radius: 6px; border: 1px solid #ddd; display: block; margin-bottom: 4px;">
+                            <span style="font-size: 0.75rem; color: #888; text-decoration: underline;" data-id="Klik untuk memperbesar foto" data-en="Click to enlarge photo">Klik untuk memperbesar foto</span>
+                        </a>
+                    </div>
+
+                    <!-- Keterangan Lengkap -->
+                    <div style="font-size: 0.83rem; color: #444; line-height: 1.5; display: flex; flex-direction: column; gap: 8px; background: #FFF; padding: 12px; border-radius: 6px; border: 1px solid #F0E8D0;">
+                        <p style="margin: 0;">Dengan penuh rasa syukur dan hormat, kami mengucapkan terima kasih yang sebesar-besarnya kepada Nyonya. Berawal dari sebuah percakapan melalui telepon, Nyonya dengan penuh kasih menanyakan kondisi kesehatan Mami. Di tengah kesibukan beliau, perhatian itu begitu tulus dan membuat kami merasa sangat diperhatikan.</p>
+                        <p style="margin: 0;">Nyonya bercerita bahwa di Amerika, beliau selalu menjaga kesehatan dengan disiplin. Pemeriksaan kesehatan dilakukan secara rutin, begitu juga dengan konsumsi obat-obatan dan vitamin yang tidak pernah diabaikan. Dari nasihat beliau, kami belajar bahwa kesehatan adalah anugerah yang harus dijaga setiap hari.</p>
+                        <p style="margin: 0;">Atas perhatian dan kepedulian Nyonya, Mami akhirnya melakukan pemeriksaan laboratorium yang menunjukkan kadar kolesterol cukup tinggi, dan langsung ditangani dengan baik bersama dokter spesialis. Mendengar hal tersebut, tanpa menunda sedikit pun, Nyonya langsung mengirimkan uang agar obat dapat segera dibeli, bahkan hingga saat ini beliau terus mengirimkan dana setiap bulan secara rutin.</p>
+                        <p style="margin: 0;">Sebagai Direktur Utama dari dua rumah sakit, di balik kesibukan yang luar biasa, beliau tetap memiliki hati yang lembut dan penuh kasih kepada keluarga. Semoga Tuhan Senantiasa melimpahkan kesehatan, umur panjang, dan berkat yang berlimpah kepada Nyonya & Mr. John.</p>
+                    </div>
+
+                    <!-- Suka & Komentar Event 10 Juli -->
+                    <div style="border-top: 1px solid #E5D599; margin-top: 12px; padding-top: 10px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                            <span style="font-size: 0.75rem; font-weight: 600; color: #555;">Tanggapan Event</span>
+                            <button onclick="toggleLikeEvent('event_c01711')" id="like-btn-event_c01711" style="background: none; border: 1px solid #D4AF37; border-radius: 20px; padding: 3px 12px; cursor: pointer; font-size: 0.75rem; color: #AA8C2C;">🤍 <span id="like-count-event_c01711">0</span> Suka</button>
+                        </div>
+                        <div id="comments-event_c01711" style="font-size: 0.8rem; color: #444; margin-bottom: 8px; display: flex; flex-direction: column; gap: 4px;"></div>
+                        <div style="display: flex; gap: 6px;">
+                            <input type="text" id="input-event_c01711" placeholder="Tulis komentar..." style="flex: 1; padding: 6px 10px; font-size: 0.75rem; border: 1px solid #ccc; border-radius: 4px;">
+                            <button onclick="postEventComment('event_c01711')" style="background: #AA8C2C; color: #fff; border: none; border-radius: 4px; padding: 6px 12px; font-size: 0.75rem; cursor: pointer;">Kirim</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Event: Kunjungan Mama Fatma Latief (16 Juli 2026) -->
+                <div class="event-card" data-date="2026-07-16" style="background: #FFFDF5; border: 1px solid #E5D599; padding: 18px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                        <span style="font-size: 0.75rem; color: #fff; font-weight: bold; background: #AA8C2C; padding: 3px 8px; border-radius: 4px;" data-id="STATUS: SELESAI" data-en="STATUS: COMPLETED">STATUS: SELESAI</span>
+                        <span style="font-size: 0.75rem; color: #AA8C2C; font-weight: bold;" data-id="16 Juli 2026" data-en="July 16, 2026">16 Juli 2026</span>
+                    </div>
+
+                    <h4 style="font-size: 1.05rem; color: #1A1A1A; margin: 0 0 8px 0;" data-id="Kunjungan Kasih kepada Mama Fatma Latief" data-en="Love Visit to Mama Fatma Latief">Kunjungan Kasih kepada Mama Fatma Latief</h4>
+                    
+                    <!-- Foto Dokumentasi -->
+                    <div style="margin-bottom: 12px; text-align: center;">
+                        <a href="image_cb0777.jpg" target="_blank">
+                            <img src="image_cb0777.jpg" alt="Kunjungan ke Mama Fatma Latief" style="width: 100%; max-height: 350px; object-fit: cover; border-radius: 6px; border: 1px solid #ddd; display: block; margin-bottom: 4px;">
+                            <span style="font-size: 0.75rem; color: #888; text-decoration: underline;" data-id="Klik untuk memperbesar foto" data-en="Click to enlarge photo">Klik untuk memperbesar foto</span>
+                        </a>
+                    </div>
+
+                    <!-- Keterangan Lengkap -->
+                    <div style="font-size: 0.83rem; color: #444; line-height: 1.5; display: flex; flex-direction: column; gap: 8px; background: #FFF; padding: 12px; border-radius: 6px; border: 1px solid #F0E8D0;">
+                        <p style="margin: 0; font-weight: 600; color: #AA8C2C;">SATU LAGI KEBAIKAN NYONYA ROWIY FISCHBACH</p>
+                        <p style="margin: 0;">Hari ini, kami Tim <strong>JRR Love & Sincerity</strong> berkunjung ke kediaman salah satu sahabat terbaik Nyonya Rowiy R. F. Fischbach di Perumnas, yaitu <strong>Mama Fatma Latief</strong>.</p>
+                        <p style="margin: 0;">Sesuai dengan perintah dan arahan Nyonya Amric Rowiy Fischbach, kunjungan ini tidak boleh dengan tangan kosong, melainkan harus sesuai dengan kebiasaan beliau—yakni selalu membawa tali kasih.</p>
+                        <p style="margin: 0;">Ungkapan kasih ini diberikan karena Nyonya sangat senang mengingat Mama Fatma Latief yang sering hadir di tempat duka, bahkan kerap menyanyikan lagu rohani yang menjadi lagu kesukaan Nyonya. Sebagai wujud kebahagiaan dan persahabatan, Nyonya memberikan sedikit tali kasih sebesar Rp3.000.000 sebagai "uang jaga-jaga dompet saja".</p>
+                        <blockquote style="margin: 6px 0 0 0; padding-left: 10px; border-left: 3px solid #AA8C2C; font-style: italic; color: #555;">
+                            "Jangan dinilai dari besar atau kecilnya wujud kasih itu, tetapi rasa persaudaraan dan persahabatanlah yang harus terus dijaga sampai Tuhan panggil katorang." <br><strong style="font-style: normal; font-size: 0.75rem; color: #AA8C2C;">— Pesan Nyonya Rowiy</strong>
+                        </blockquote>
+                    </div>
+
+                    <!-- Suka & Komentar Event 16 Juli -->
+                    <div style="border-top: 1px solid #E5D599; margin-top: 12px; padding-top: 10px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                            <span style="font-size: 0.75rem; font-weight: 600; color: #555;">Tanggapan Event</span>
+                            <button onclick="toggleLikeEvent('event_cb0777')" id="like-btn-event_cb0777" style="background: none; border: 1px solid #D4AF37; border-radius: 20px; padding: 3px 12px; cursor: pointer; font-size: 0.75rem; color: #AA8C2C;">🤍 <span id="like-count-event_cb0777">0</span> Suka</button>
+                        </div>
+                        <div id="comments-event_cb0777" style="font-size: 0.8rem; color: #444; margin-bottom: 8px; display: flex; flex-direction: column; gap: 4px;"></div>
+                        <div style="display: flex; gap: 6px;">
+                            <input type="text" id="input-event_cb0777" placeholder="Tulis komentar..." style="flex: 1; padding: 6px 10px; font-size: 0.75rem; border: 1px solid #ccc; border-radius: 4px;">
+                            <button onclick="postEventComment('event_cb0777')" style="background: #AA8C2C; color: #fff; border: none; border-radius: 4px; padding: 6px 12px; font-size: 0.75rem; cursor: pointer;">Kirim</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Rowiy Fischbach Fangidae. Hak Cipta Dilindungi.</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        window.onload = function() {
+            const savedLang = localStorage.getItem('site_lang') || 'id';
+            setLanguage(savedLang);
+            sortEventsByDate(); // Mengurutkan event berdasarkan tanggal secara otomatis
+            loadAllEventInteractions();
+        };
+
+        // Fungsi otomatis mengurutkan kartu event berdasarkan atribut data-date
+        function sortEventsByDate() {
+            const container = document.getElementById('event-container');
+            const cards = Array.from(container.getElementsByClassName('event-card'));
+            
+            cards.sort((a, b) => {
+                let dateA = new Date(a.getAttribute('data-date'));
+                let dateB = new Date(b.getAttribute('data-date'));
+                return dateB - dateA; // Urutan Descending (Terbaru di atas)
+            });
+
+            cards.forEach(card => container.appendChild(card));
+        }
+
+        function loadAllEventInteractions() {
+            ['event_slide5juli', 'event_c01711', 'event_cb0777'].forEach(id => {
+                let likesData = JSON.parse(localStorage.getItem('likes_' + id)) || { count: 0, liked: false };
+                let likeCountEl = document.getElementById('like-count-' + id);
+                if (likeCountEl) {
+                    likeCountEl.innerText = likesData.count;
+                    if (likesData.liked) {
+                        document.getElementById('like-btn-' + id).innerHTML = '❤️ <span id="like-count-' + id + '">' + likesData.count + '</span> Suka';
+                    }
+                }
+
+                let comments = JSON.parse(localStorage.getItem('comments_' + id)) || [];
+                let commentContainer = document.getElementById('comments-' + id);
+                if (commentContainer) {
+                    if (comments.length === 0) {
+                        commentContainer.innerHTML = '<span style="color: #998; font-style: italic; font-size: 0.7rem;">Belum ada tanggapan.</span>';
+                    } else {
+                        let html = '';
+                        comments.forEach(c => {
+                            html += `<div><strong>${c.name}:</strong> ${c.text}</div>`;
+                        });
+                        commentContainer.innerHTML = html;
+                    }
+                }
+            });
+        }
+
+        function toggleLikeEvent(id) {
+            let likesData = JSON.parse(localStorage.getItem('likes_' + id)) || { count: 0, liked: false };
+            if (likesData.liked) {
+                likesData.count -= 1;
+                likesData.liked = false;
+                document.getElementById('like-btn-' + id).innerHTML = '🤍 <span id="like-count-' + id + '">' + likesData.count + '</span> Suka';
+            } else {
+                likesData.count += 1;
+                likesData.liked = true;
+                document.getElementById('like-btn-' + id).innerHTML = '❤️ <span id="like-count-' + id + '">' + likesData.count + '</span> Suka';
+            }
+            localStorage.setItem('likes_' + id, JSON.stringify(likesData));
+        }
+
+        function postEventComment(id) {
+            const input = document.getElementById('input-' + id);
+            const text = input.value.trim();
+            if (!text) return;
+
+            let guestList = JSON.parse(localStorage.getItem('rowiy_guest_list')) || [];
+            let authorName = guestList.length > 0 ? guestList[0].name : 'Pengunjung';
+
+            let comments = JSON.parse(localStorage.getItem('comments_' + id)) || [];
+            comments.push({ name: authorName, text: text });
+
+            localStorage.setItem('comments_' + id, JSON.stringify(comments));
+            input.value = '';
+            loadAllEventInteractions();
+        }
+    </script>
+</body>
+</html>

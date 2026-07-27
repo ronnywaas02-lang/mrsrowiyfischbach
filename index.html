@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Nyonya Rowiy Fischbach Fangidae - Official Global Hub</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Navigasi Utama -->
+<header class="mobile-header">
+    <div class="nav-links" style="font-size: 0.65rem; display: flex; justify-content: center; align-items: center; gap: 4px; padding: 4px 2px; white-space: nowrap; overflow-x: auto;">
+        <a href="index.html" class="active" data-id="Home" data-en="Home" style="padding: 2px 4px;">Home</a>
+        <a href="profile.html" data-id="Profil" data-en="Profile" style="padding: 2px 4px;">Profil</a>
+        <a href="gallery.html" data-id="Galeri" data-en="Gallery" style="padding: 2px 4px;">Galeri</a>
+        <a href="calendar.html" data-id="Event" data-en="Event" style="padding: 2px 4px;">Event</a>
+        <a href="guestbook.html" data-id="Buku Tamu" data-en="Guest Book" style="padding: 2px 4px;">Buku Tamu</a>
+        <a href="forum.html" data-id="Forum" data-en="Forum" style="padding: 2px 4px;">Forum</a>
+    </div>
+</header>
+
+    <!-- Tombol Pemilih Bahasa (Bendera Kecil) -->
+    <div style="text-align: right; padding: 10px 20px; background: #FFFDF5; border-bottom: 1px solid #E5E5E5;">
+        <span style="font-size: 0.75rem; color: #666; margin-right: 8px;">Language:</span>
+        <button onclick="setLanguage('id')" style="background: none; border: 1.5px solid #D4AF37; border-radius: 4px; padding: 2px 6px; cursor: pointer; font-size: 0.85rem;" title="Bahasa Indonesia">🇮🇩</button>
+        <button onclick="setLanguage('en')" style="background: none; border: 1.5px solid #D4AF37; border-radius: 4px; padding: 2px 6px; cursor: pointer; font-size: 0.85rem;" title="English">🇺🇸</button>
+    </div>
+
+    <!-- Konten Utama -->
+    <main>
+        <section class="hero">
+            <div class="profile-photo-container">
+                <img src="foto.png" alt="Nyonya Rowiy Fischbach Fangidae" class="profile-photo">
+            </div>
+
+            <div class="hero-text-block">
+                <span class="hero-badge" data-id="Pusat Informasi Global Resmi" data-en="Official Global Hub">Official Global Hub</span>
+                <h1 data-id="Nyonya Rowiy Fischbach Fangidae" data-en="Nyonya Rowiy Fischbach Fangidae">Nyonya Rowiy Fischbach Fangidae</h1>
+                <p class="subtitle" data-id="Filantropi & Komunitas" data-en="Philanthropy & Community">Philanthropy & Community</p>
+                <p class="hero-desc" data-id="Pusat informasi resmi dan wadah interaksi bagi seluruh pendukung setia di Amerika Serikat dan seluruh dunia." data-en="Official information center and interaction hub for loyal supporters in the United States and worldwide.">Pusat informasi resmi dan wadah interaksi bagi seluruh pendukung setia di Amerika Serikat dan seluruh dunia.</p>
+                
+                <div class="cta-container">
+                    <a href="guestbook.html" class="btn-gold-primary" data-id="Isi Buku Tamu" data-en="Sign Guest Book">Sign Guest Book</a>
+                    <a href="#" onclick="accessForum(event)" class="btn-gold-outline" data-id="Forum Komunitas" data-en="Community Forum">Community Forum</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="container welcome-card" style="text-align: center;">
+            <h3 style="font-family: 'Playfair Display', serif; color: #AA8C2C; margin-bottom: 10px; font-size: 1.2rem;" data-id="🌟 Selamat Datang" data-en="🌟 Welcome">🌟 Selamat Datang</h3>
+            <p style="font-size: 0.9rem; color: #555;" data-id="Silakan isi Buku Tamu terlebih dahulu sebelum Anda dapat bergabung di ruang diskusi eksklusif bersama para pengikut lainnya." data-en="Please fill out the Guest Book first before joining the exclusive discussion room with other followers.">Silakan isi Buku Tamu terlebih dahulu sebelum Anda dapat bergabung di ruang diskusi eksklusif bersama para pengikut lainnya.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p data-id="&copy; 2026 Rowiy Fischbach Fangidae. Hak Cipta Dilindungi." data-en="&copy; 2026 Rowiy Fischbach Fangidae. All Rights Reserved.">&copy; 2026 Rowiy Fischbach Fangidae. All Rights Reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Set bahasa saat halaman dimuat berdasarkan memori terakhir
+        window.onload = function() {
+            const savedLang = localStorage.getItem('site_lang') || 'id';
+            setLanguage(savedLang);
+        };
+    </script>
+</body>
+</html>

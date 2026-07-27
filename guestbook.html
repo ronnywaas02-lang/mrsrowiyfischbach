@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Buku Tamu - Rowiy Fischbach Fangidae</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+   <!-- Navigasi Utama -->
+<header class="mobile-header">
+    <div class="nav-links" style="font-size: 0.65rem; display: flex; justify-content: center; align-items: center; gap: 4px; padding: 4px 2px; white-space: nowrap; overflow-x: auto;">
+        <a href="index.html" data-id="Home" data-en="Home" style="padding: 2px 4px;">Home</a>
+        <a href="profile.html" data-id="Profil" data-en="Profile" style="padding: 2px 4px;">Profil</a>
+        <a href="gallery.html" data-id="Galeri" data-en="Gallery" style="padding: 2px 4px;">Galeri</a>
+        <a href="calendar.html" data-id="Event" data-en="Event" style="padding: 2px 4px;">Event</a>
+        <a href="guestbook.html" class="active" data-id="Buku Tamu" data-en="Guest Book" style="padding: 2px 4px;">Buku Tamu</a>
+        <a href="forum.html" data-id="Forum" data-en="Forum" style="padding: 2px 4px;">Forum</a>
+    </div>
+</header>
+
+    <main>
+        <div class="container" style="max-width: 600px; margin: 0 auto; padding: 20px;">
+            <h2 style="color: #AA8C2C; margin-bottom: 5px;">Buku Tamu</h2>
+            <p style="color: #666; font-size: 0.85rem; margin-bottom: 20px;">Silakan isi kehadiran Anda dan sapa kami.</p>
+            
+            <!-- Statistik Pengunjung -->
+            <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+                <div style="flex: 1; background: #FFFDF5; border: 1px solid #E5D599; padding: 10px; border-radius: 6px; text-align: center;">
+                    <span style="font-size: 0.75rem; color: #666; display: block;">Total Pengunjung Unik</span>
+                    <strong id="total-visitors" style="font-size: 1.2rem; color: #AA8C2C;">0</strong>
+                </div>
+                <div style="flex: 1; background: #FFFDF5; border: 1px solid #E5D599; padding: 10px; border-radius: 6px; text-align: center;">
+                    <span style="font-size: 0.75rem; color: #666; display: block;">Sedang Online</span>
+                    <strong id="active-visitors" style="font-size: 1.2rem; color: #28a745;">0</strong>
+                </div>
+            </div>
+
+            <!-- Form Input Buku Tamu -->
+            <form id="guestForm" onsubmit="submitGuest(event)" style="background: #FFFDF5; border: 1px solid #E5D599; padding: 15px; border-radius: 8px; display: flex; flex-direction: column; gap: 10px; margin-bottom: 25px;">
+                <div>
+                    <label style="font-size: 0.8rem; font-weight: 600; color: #444;">Nama Lengkap:</label><br>
+                    <input type="text" id="guestName" required style="width: 100%; padding: 8px; font-size: 0.85rem; border: 1px solid #ccc; border-radius: 4px; margin-top: 4px;">
+                </div>
+                <div>
+                    <label style="font-size: 0.8rem; font-weight: 600; color: #444;">Nomor HP / WhatsApp (Unik):</label><br>
+                    <input type="tel" id="guestPhone" required placeholder="Contoh: 08123456789" style="width: 100%; padding: 8px; font-size: 0.85rem; border: 1px solid #ccc; border-radius: 4px; margin-top: 4px;">
+                </div>
+                <div>
+                    <label style="font-size: 0.8rem; font-weight: 600; color: #444;">Pesan / Ucapan:</label><br>
+                    <textarea id="guestMessage" rows="3" required style="width: 100%; padding: 8px; font-size: 0.85rem; border: 1px solid #ccc; border-radius: 4px; margin-top: 4px;"></textarea>
+                </div>
+                <button type="submit" style="background: #AA8C2C; color: #fff; border: none; padding: 10px; border-radius: 4px; font-weight: 600; cursor: pointer; font-size: 0.85rem;">Kirim Buku Tamu</button>
+            </form>
+
+            <!-- Daftar Tamu & Status Online (Indikator Hijau) -->
+            <div style="background: #FFFDF5; border: 1px solid #E5D599; padding: 15px; border-radius: 8px;">
+                <h3 style="font-size: 0.95rem; color: #AA8C2C; margin-bottom: 10px;">Daftar Tamu & Status Keaktifan</h3>
+                <div id="visitor-status-list" style="display: flex; flex-direction: column; gap: 8px; font-size: 0.8rem;">
+                    <!-- Dimuat oleh JavaScript -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Rowiy Fischbach Fangidae. Hak Cipta Dilindungi.</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        window.onload = function() {
+            renderVisitorStatuses();
+            updateOnlineStatus();
+        };
+
+        // Fungsi mencatat pengisian buku tamu dengan validasi nomor HP unik
+        function submitGuest(e) {
+            e.preventDefault();
+            const name = document.getElementById('guestName').value.trim();
+            const phone = document.getElementById('guestPhone').value.trim();
+            const message = document.getElementById('guestMessage').value.trim();
+            
+            if(!name || !phone || !message) return;
+
+            let guestList = JSON.parse(localStorage.getItem('rowiy_guest_list')) || [];
+            
+            // Cek apakah nomor HP sudah ada di daftar
+            let existingIndex = guestList.findIndex(g => g.phone === phone);
+
+            if (existingIndex !== -1) {
+                // Jika nomor sama sudah ada, perbarui nama, pesan, dan waktu aktifnya saja (tidak menambah data baru)
+                guestList[existingIndex].name = name;
+                guestList[existingIndex].message = message;
+                guestList[existingIndex].lastActive = new Date().getTime();
+                alert('Nomor HP sudah terdaftar. Data Anda berhasil diperbarui!');
+            } else {
+                // Jika nomor HP belum ada, tambahkan sebagai tamu baru
+                guestList.push({
+                    name: name,
+                    phone: phone,
+                    message: message,
+                    lastActive: new Date().getTime()
+                });
+                alert('Terima kasih, buku tamu berhasil dikirim!');
+            }
+
+            localStorage.setItem('rowiy_guest_list', JSON.stringify(guestList));
+            
+            document.getElementById('guestForm').reset();
+            renderVisitorStatuses();
+        }
+
+        // Fungsi memperbarui status online secara berkala
+        function updateOnlineStatus() {
+            let guestList = JSON.parse(localStorage.getItem('rowiy_guest_list')) || [];
+            if (guestList.length > 0) {
+                let currentUser = guestList[guestList.length - 1]; 
+                currentUser.lastActive = new Date().getTime();
+                localStorage.setItem('rowiy_guest_list', JSON.stringify(guestList));
+            }
+        }
+        setInterval(updateOnlineStatus, 30000); // Ping tiap 30 detik
+
+        // Render daftar tamu, hitung total unik, dan hitung yang online
+        function renderVisitorStatuses() {
+            let guestList = JSON.parse(localStorage.getItem('rowiy_guest_list')) || [];
+            let container = document.getElementById('visitor-status-list');
+            let html = '';
+            
+            // Total pengunjung berdasarkan nomor HP unik (panjang array karena duplikasi dicegah)
+            let totalUnik = guestList.length;
+            let activeCount = 0;
+            let now = new Date().getTime();
+
+            if (totalUnik === 0) {
+                container.innerHTML = '<span style="color: #888; font-style: italic;">Belum ada tamu yang tercatat.</span>';
+                document.getElementById('total-visitors').innerText = 0;
+                document.getElementById('active-visitors').innerText = 0;
+                return;
+            }
+
+            guestList.slice().reverse().forEach(guest => {
+                let lastActive = guest.lastActive || 0;
+                let isOnline = (now - lastActive) < 120000; // Aktif dalam 2 menit terakhir
+                
+                if (isOnline) {
+                    activeCount++;
+                }
+
+                let dotColor = isOnline ? '#28a745' : '#ccc'; 
+                let statusText = isOnline ? 'Online' : 'Offline';
+
+                html += `
+                    <div style="display: flex; justify-content: space-between; align-items: center; background: #fff; padding: 8px 10px; border-radius: 4px; border: 1px solid #f0e8d0;">
+                        <div>
+                            <strong>${guest.name}</strong> <span style="font-size: 0.7rem; color: #888;">(${guest.phone})</span><br>
+                            <small style="color: #666;">"${guest.message}"</small>
+                        </div>
+                        <span style="display: flex; align-items: center; gap: 5px; color: #555; white-space: nowrap;">
+                            <span style="height: 10px; width: 10px; background-color: ${dotColor}; border-radius: 50%; display: inline-block;"></span>
+                            <small>${statusText}</small>
+                        </span>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+            document.getElementById('total-visitors').innerText = totalUnik;
+            document.getElementById('active-visitors').innerText = activeCount;
+        }
+
+        setInterval(renderVisitorStatuses, 5000); // Refresh tampilan statistik & status tiap 5 detik
+    </script>
+</body>
+</html>
