@@ -82,7 +82,6 @@ function loadGuestBookEntries() {
                 return;
             }
 
-            // Filter hanya data buku tamu (yang memiliki kolom nama/pesan)
             let validGuests = guestList.filter(item => item.nama || item.pesan);
 
             if (validGuests.length === 0) {
@@ -184,11 +183,13 @@ function setLanguage(lang) {
     });
 }
 
-// --- FUNGSI GALERI ONLINE (MENGGUNAKAN SATU URL UTAMA) ---
-
+// --- FUNGSI GALERI ONLINE ---
 window.addEventListener('DOMContentLoaded', () => {
     if (document.getElementById('like-count-gallery3')) {
         loadGalleryData();
+    }
+    if (document.querySelector('[id^="like-count-event"]')) {
+        loadEventData();
     }
 });
 
@@ -198,7 +199,6 @@ function loadGalleryData() {
         .then(rows => {
             if (!Array.isArray(rows)) return;
 
-            // Reset hitungan awal
             ['gallery3', 'gallery4', 'gallery5'].forEach(id => {
                 let likeCountEl = document.getElementById('like-count-' + id);
                 if (likeCountEl) likeCountEl.innerText = '0';
@@ -207,7 +207,6 @@ function loadGalleryData() {
             });
 
             rows.forEach(row => {
-                // Mendukung format data galeri jika ada kolom foto_id / tipe
                 let fotoId = row.foto_id;
                 let tipe = row.tipe;
                 let pesan = row.pesan;
@@ -295,4 +294,108 @@ function postPhotoComment(photoId) {
         loadGalleryData();
     })
     .catch(err => console.error('Gagal mengirim komentar:', err));
+}
+
+// --- FUNGSI EVENT / CALENDAR ONLINE ---
+function loadEventData() {
+    fetch(SHEETDB_API_URL)
+        .then(response => response.json())
+        .then(rows => {
+            if (!Array.isArray(rows)) return;
+
+            document.querySelectorAll('[id^="like-count-event"]').forEach(el => {
+                el.innerText = '0';
+            });
+            document.querySelectorAll('[id^="comments-event"]').forEach(container => {
+                container.innerHTML = '';
+            });
+
+            rows.forEach(row => {
+                let eventId = row.foto_id; 
+                let tipe = row.tipe;
+                let pesan = row.pesan;
+
+                if (eventId && eventId.startsWith('event')) {
+                    if (tipe === 'event_like') {
+                        let likeCountEl = document.getElementById('like-count-' + eventId);
+                        if (likeCountEl) {
+                            let current = parseInt(likeCountEl.innerText) || 0;
+                            likeCountEl.innerText = current + 1;
+                        }
+                    } else if (tipe === 'event_komentar') {
+                        let commentsContainer = document.getElementById('comments-' + eventId);
+                        if (commentsContainer) {
+                            let newComment = document.createElement('div');
+                            newComment.style.fontSize = '0.75rem';
+                            newComment.style.color = '#333';
+                            newComment.innerHTML = '<strong>Pengunjung:</strong> ' + pesan;
+                            commentsContainer.appendChild(newComment);
+                        }
+                    }
+                }
+            });
+        })
+        .catch(err => console.error('Gagal memuat data event:', err));
+}
+
+function toggleEventLike(eventId) {
+    const tanggal = new Date().toLocaleString('id-ID');
+    const newData = {
+        data: [
+            {
+                foto_id: eventId,
+                tipe: 'event_like',
+                pesan: 'Suka Event',
+                tanggal: tanggal
+            }
+        ]
+    };
+
+    fetch(SHEETDB_API_URL, {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(newData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        loadEventData();
+    })
+    .catch(err => console.error('Gagal mengirim like event:', err));
+}
+
+function postEventComment(eventId) {
+    let inputEl = document.getElementById('input-' + eventId);
+    if (!inputEl) return;
+    let commentText = inputEl.value.trim();
+    if(commentText === '') return;
+
+    const tanggal = new Date().toLocaleString('id-ID');
+    const newData = {
+        data: [
+            {
+                foto_id: eventId,
+                tipe: 'event_komentar',
+                pesan: commentText,
+                tanggal: tanggal
+            }
+        ]
+    };
+
+    fetch(SHEETDB_API_URL, {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(newData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        inputEl.value = '';
+        loadEventData();
+    })
+    .catch(err => console.error('Gagal mengirim komentar event:', err));
 }
