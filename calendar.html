@@ -189,7 +189,7 @@ window.addEventListener('DOMContentLoaded', () => {
     if (document.getElementById('like-count-gallery3')) {
         loadGalleryData();
     }
-    if (document.getElementById('like-count-event1') || document.querySelector('[id^="like-count-event"]')) {
+    if (document.querySelector('[id^="like-count-event"]')) {
         loadEventData();
     }
 });
@@ -305,16 +305,17 @@ function loadEventData() {
         .then(rows => {
             if (!Array.isArray(rows)) return;
 
-            // Sesuaikan ID event Anda di HTML, misal: event1, event2, dll
-            ['event1', 'event2', 'event3'].forEach(id => {
-                let likeCountEl = document.getElementById('like-count-' + id);
-                if (likeCountEl) likeCountEl.innerText = '0';
-                let commentsContainer = document.getElementById('comments-' + id);
-                if (commentsContainer) commentsContainer.innerHTML = '';
+            let eventElements = document.querySelectorAll('[id^="like-count-event"]');
+            eventElements.forEach(el => {
+                el.innerText = '0';
+            });
+            let commentContainers = document.querySelectorAll('[id^="comments-event"]');
+            commentContainers.forEach(container => {
+                container.innerHTML = '';
             });
 
             rows.forEach(row => {
-                let eventId = row.foto_id; // Menggunakan kolom foto_id atau event_id yang sama
+                let eventId = row.foto_id; 
                 let tipe = row.tipe;
                 let pesan = row.pesan;
 
