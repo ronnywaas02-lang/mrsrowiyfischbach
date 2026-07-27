@@ -1,6 +1,5 @@
-// Konfigurasi API Google Sheets (SheetDB)
-const SHEETDB_GUESTBOOK_URL = 'https://sheetdb.io/api/v1/jthrcdiakzpyq';
-const SHEETDB_GALLERY_URL = 'https://sheetdb.io/api/v1/jthrcdiakzpyq/sheet/galeri';
+// Konfigurasi API Google Sheets (Menggunakan 1 URL Utama yang sama)
+const SHEETDB_API_URL = 'https://sheetdb.io/api/v1/jthrcdiakzpyq';
 
 // Cek akses forum (apakah sudah mengisi buku tamu)
 function accessForum(event) {
@@ -46,7 +45,7 @@ function submitGuestBook(event) {
         ]
     };
 
-    fetch(SHEETDB_GUESTBOOK_URL, {
+    fetch(SHEETDB_API_URL, {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -75,10 +74,18 @@ function loadGuestBookEntries() {
     const container = document.getElementById('guestEntriesContainer');
     if (!container) return;
 
-    fetch(SHEETDB_GUESTBOOK_URL)
+    fetch(SHEETDB_API_URL)
         .then(response => response.json())
         .then(guestList => {
-            if (!guestList || guestList.length === 0) {
+            if (!guestList || !Array.isArray(guestList)) {
+                container.innerHTML = '<p style="font-size: 0.85rem; color: #777; text-align: center;">Belum ada buku tamu yang terisi.</p>';
+                return;
+            }
+
+            // Filter hanya data buku tamu (yang memiliki kolom nama/pesan)
+            let validGuests = guestList.filter(item => item.nama || item.pesan);
+
+            if (validGuests.length === 0) {
                 container.innerHTML = '<p style="font-size: 0.85rem; color: #777; text-align: center;">Belum ada buku tamu yang terisi.</p>';
                 return;
             }
@@ -86,10 +93,10 @@ function loadGuestBookEntries() {
             let html = '<h4 style="font-family: \'Playfair Display\', serif; margin-bottom: 12px; color: #AA8C2C; font-size: 1rem;">Daftar Tamu Terbaru</h4>';
             html += '<div style="max-height: 250px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px;">';
 
-            guestList.reverse().forEach(entry => {
-                let namaTamu = entry.nama || entry.name || 'Tanpa Nama';
-                let pesanTamu = entry.pesan || entry.message || '-';
-                let tanggalTamu = entry.tanggal || entry.date || '';
+            validGuests.reverse().forEach(entry => {
+                let namaTamu = entry.nama || 'Tanpa Nama';
+                let pesanTamu = entry.pesan || '-';
+                let tanggalTamu = entry.tanggal || '';
                 let negaraTamu = entry.country ? `(${entry.country})` : '';
 
                 html += `
@@ -164,12 +171,10 @@ function postComment(event) {
     loadForumComments();
 }
 
-// Fungsi untuk mengganti bahasa halaman secara dinamis lewat tombol bendera
+// Fungsi ganti bahasa
 function setLanguage(lang) {
     localStorage.setItem('site_lang', lang);
-    
     const elements = document.querySelectorAll('[data-id]');
-    
     elements.forEach(el => {
         if (lang === 'en') {
             if (el.getAttribute('data-en')) el.innerText = el.getAttribute('data-en');
@@ -179,7 +184,7 @@ function setLanguage(lang) {
     });
 }
 
-// --- FUNGSI GALERI ONLINE (LIKE & KOMENTAR) ---
+// --- FUNGSI GALERI ONLINE (MENGGUNAKAN SATU URL UTAMA) ---
 
 window.addEventListener('DOMContentLoaded', () => {
     if (document.getElementById('like-count-gallery3')) {
@@ -188,7 +193,7 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 function loadGalleryData() {
-    fetch(SHEETDB_GALLERY_URL)
+    fetch(SHEETDB_API_URL)
         .then(response => response.json())
         .then(rows => {
             if (!Array.isArray(rows)) return;
@@ -202,24 +207,27 @@ function loadGalleryData() {
             });
 
             rows.forEach(row => {
+                // Mendukung format data galeri jika ada kolom foto_id / tipe
                 let fotoId = row.foto_id;
                 let tipe = row.tipe;
                 let pesan = row.pesan;
 
-                if (tipe === 'like') {
-                    let likeCountEl = document.getElementById('like-count-' + fotoId);
-                    if (likeCountEl) {
-                        let current = parseInt(likeCountEl.innerText) || 0;
-                        likeCountEl.innerText = current + 1;
-                    }
-                } else if (tipe === 'komentar') {
-                    let commentsContainer = document.getElementById('comments-' + fotoId);
-                    if (commentsContainer) {
-                        let newComment = document.createElement('div');
-                        newComment.style.fontSize = '0.75rem';
-                        newComment.style.color = '#333';
-                        newComment.innerHTML = '<strong>Pengunjung:</strong> ' + pesan;
-                        commentsContainer.appendChild(newComment);
+                if (fotoId && ['gallery3', 'gallery4', 'gallery5'].includes(fotoId)) {
+                    if (tipe === 'like') {
+                        let likeCountEl = document.getElementById('like-count-' + fotoId);
+                        if (likeCountEl) {
+                            let current = parseInt(likeCountEl.innerText) || 0;
+                            likeCountEl.innerText = current + 1;
+                        }
+                    } else if (tipe === 'komentar') {
+                        let commentsContainer = document.getElementById('comments-' + fotoId);
+                        if (commentsContainer) {
+                            let newComment = document.createElement('div');
+                            newComment.style.fontSize = '0.75rem';
+                            newComment.style.color = '#333';
+                            newComment.innerHTML = '<strong>Pengunjung:</strong> ' + pesan;
+                            commentsContainer.appendChild(newComment);
+                        }
                     }
                 }
             });
@@ -240,7 +248,7 @@ function toggleLike(photoId) {
         ]
     };
 
-    fetch(SHEETDB_GALLERY_URL, {
+    fetch(SHEETDB_API_URL, {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -273,7 +281,7 @@ function postPhotoComment(photoId) {
         ]
     };
 
-    fetch(SHEETDB_GALLERY_URL, {
+    fetch(SHEETDB_API_URL, {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
