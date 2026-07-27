@@ -36,6 +36,47 @@
             <!-- Wadah Event yang diurutkan otomatis secara dinamis -->
             <div id="event-container" style="display: flex; flex-direction: column; gap: 20px; text-align: left;">
 
+                <!-- Event: Panggilan Kasih & Tali Kasih (25 Juli 2026) [BARU] -->
+                <div class="event-card" data-date="2026-07-25" style="background: #FFFDF5; border: 1px solid #E5D599; padding: 18px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                        <span style="font-size: 0.75rem; color: #fff; font-weight: bold; background: #AA8C2C; padding: 3px 8px; border-radius: 4px;" data-id="STATUS: SELESAI" data-en="STATUS: COMPLETED">STATUS: SELESAI</span>
+                        <span style="font-size: 0.75rem; color: #AA8C2C; font-weight: bold;" data-id="25 Juli 2026" data-en="July 25, 2026">25 Juli 2026</span>
+                    </div>
+
+                    <h4 style="font-size: 1.05rem; color: #1A1A1A; margin: 0 0 8px 0;" data-id="Panggilan Kasih & Tali Kasih dari Nyonya Rowiy Fischbach" data-en="Call of Love & Blessing from Nyonya Rowiy Fischbach">Panggilan Kasih & Tali Kasih dari Nyonya Rowiy Fischbach</h4>
+                    
+                    <!-- Foto Dokumentasi (Screenshot VC & Bukti Transfer) -->
+                    <div style="margin-bottom: 12px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; text-align: center;">
+                        <a href="image_a46ad4.jpg" target="_blank">
+                            <img src="image_a46ad4.jpg" alt="Video Call Nyonya Besar Rowiy" style="width: 100%; height: 160px; object-fit: cover; border-radius: 6px; border: 1px solid #ddd; display: block; margin-bottom: 4px;">
+                            <span style="font-size: 0.7rem; color: #888; text-decoration: underline;">Video Call Bersama</span>
+                        </a>
+                        <a href="image_a46af5.jpg" target="_blank">
+                            <img src="image_a46af5.jpg" alt="Bukti Transfer 1.200.000" style="width: 100%; height: 160px; object-fit: cover; border-radius: 6px; border: 1px solid #ddd; display: block; margin-bottom: 4px;">
+                            <span style="font-size: 0.7rem; color: #888; text-decoration: underline;">Tali Kasih Rp1.200.000</span>
+                        </a>
+                    </div>
+
+                    <!-- Keterangan Lengkap -->
+                    <div style="font-size: 0.83rem; color: #444; line-height: 1.5; display: flex; flex-direction: column; gap: 8px; background: #FFF; padding: 12px; border-radius: 6px; border: 1px solid #F0E8D0;">
+                        <p style="margin: 0;">Terimakasih tadi malam sudah menelpon kami di Kupang. Walaupun sibuk bekerja tiada henti-hentinya, tapi masih mengingat kami sahabat-sahabat dan memberikan tanda kasih uang isi dompet senilai **Rp1.200.000**.</p>
+                        <p style="margin: 0; font-weight: 600; color: #AA8C2C;">Terimakasih Nyonya Rowiy Fischbach. Tuhan Yesus memberkati, semakin naik lagi dan lagi, diberikan kesehatan untuk Nyonya Rowiy R. F. Fischbach, Nyonya Amric Rowiy Fischbach, baik suami Mr. John.</p>
+                    </div>
+
+                    <!-- Suka & Komentar Event 25 Juli -->
+                    <div style="border-top: 1px solid #E5D599; margin-top: 12px; padding-top: 10px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                            <span style="font-size: 0.75rem; font-weight: 600; color: #555;">Tanggapan Event</span>
+                            <button onclick="toggleLikeEvent('event_25juli2026')" id="like-btn-event_25juli2026" style="background: none; border: 1px solid #D4AF37; border-radius: 20px; padding: 3px 12px; cursor: pointer; font-size: 0.75rem; color: #AA8C2C;">🤍 <span id="like-count-event_25juli2026">0</span> Suka</button>
+                        </div>
+                        <div id="comments-event_25juli2026" style="font-size: 0.8rem; color: #444; margin-bottom: 8px; display: flex; flex-direction: column; gap: 4px;"></div>
+                        <div style="display: flex; gap: 6px;">
+                            <input type="text" id="input-event_25juli2026" placeholder="Tulis komentar..." style="flex: 1; padding: 6px 10px; font-size: 0.75rem; border: 1px solid #ccc; border-radius: 4px;">
+                            <button onclick="postEventComment('event_25juli2026')" style="background: #AA8C2C; color: #fff; border: none; border-radius: 4px; padding: 6px 12px; font-size: 0.75rem; cursor: pointer;">Kirim</button>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Event: Buku Sekolah Tahun Ajaran Baru (5 Juli 2026) -->
                 <div class="event-card" data-date="2026-07-05" style="background: #FFFDF5; border: 1px solid #E5D599; padding: 18px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
@@ -197,7 +238,7 @@
         }
 
         function loadAllEventInteractions() {
-            ['event_slide5juli', 'event_c01711', 'event_cb0777'].forEach(id => {
+            ['event_25juli2026', 'event_slide5juli', 'event_c01711', 'event_cb0777'].forEach(id => {
                 let likesData = JSON.parse(localStorage.getItem('likes_' + id)) || { count: 0, liked: false };
                 let likeCountEl = document.getElementById('like-count-' + id);
                 if (likeCountEl) {
